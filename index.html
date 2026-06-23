@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Quiz de J-F</title>
+    <style>
+        :root {
+            --bg-color: #1a1a24;
+            --card-bg: #252533;
+            --accent-color: #ff9f43;
+            --text-main: #f5f5f7;
+            --text-muted: #a0a0b0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px 15px;
+            line-height: 1.5;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* Espace entre ton avatar et le texte */
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--card-bg);
+            text-align: left; /* Aligné à gauche pour épouser l'avatar */
+        }
+
+        .header-avatar {
+            width: 70px; /* Taille parfaite pour mobile */
+            height: 70px;
+            border-radius: 50%; /* Rend l'avatar rond */
+            border: 3px solid var(--accent-color); /* Un petit cercle orange */
+            object-fit: cover;
+            background-color: var(--card-bg);
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* Ajustement de la taille de l'en-tête pour les grands écrans */
+        @media (min-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            header p { font-size: 1rem; }
+            .header-avatar { width: 90px; height: 90px; }
+        }
+
+        /* Style des sections accordéons (Repliables) */
+        details {
+            background-color: #20202c;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid #2d2d3f;
+        }
+
+        summary {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            cursor: pointer;
+            list-style: none; /* Cache la flèche par défaut sur certains navigateurs */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        /* Ajout d'une flèche personnalisée en CSS */
+        summary::after {
+            content: '►';
+            font-size: 0.9rem;
+            transition: transform 0.2s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg);
+        }
+
+        summary:hover {
+            background-color: var(--card-bg);
+        }
+
+        /* Grille de cartes à l'intérieur d'une section */
+        .quiz-grid {
+            padding: 20px;
+            display: block;
+        }
+
+        .quiz-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Zone vidéo / Image Titre */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: -25px; /* Ton micro-ajustement parfait de 25px */
+            left: 0;
+            width: 100%;
+            height: calc(100% + 25px);
+            border: none;
+            display: block;
+            z-index: 1;
+        }
+
+        /* Image titre personnalisée qui couvre l'emplacement */
+        .quiz-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 2; /* Passe par-dessus l'iframe */
+            cursor: pointer;
+        }
+
+        /* Masque l'image dès qu'on clique ou interagit avec le conteneur */
+        .video-container.active .quiz-poster {
+            display: none;
+            pointer-events: none;
+        }
+
+        .quiz-details {
+            padding: 15px;
+        }
+
+        .quiz-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .quiz-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (min-width: 600px) {
+            body { padding: 40px; max-width: 1200px; margin: 0 auto; }
+            header h1 { font-size: 2.5rem; }
+            .quiz-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 25px;
+            }
+            .quiz-card { margin-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="assets/jf2.png" class="header-avatar" alt="Avatar J-F">
+        
+        <div class="header-text">
+            <h1>La Vitrine de Quiz de J-F</h1>
+            <p>Choisissez une thématique, touchez l'image pour charger le quiz et castez !</p>
+        </div>
+    </header>
+
+    <details>
+        <summary>Quiz 5x5</summary>
+        <div class="quiz-grid">
+
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/1980.png" class="quiz-poster" alt="Preview Quiz">
+                    
+                    <iframe src="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/preview" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 1980 à 1984</div>
+                    <div class="quiz-meta">25 Questions • 21 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/1990.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 1990 à 1994</div>
+                    <div class="quiz-meta">25 Questions • 20 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/2000.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 2000 à 2004</div>
+                    <div class="quiz-meta">25 Questions • 26 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/2010.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1uQ-_laQvnrvBnj4vWnmpFbaGRmu9RgI9/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 2010 à 2014</div>
+                    <div class="quiz-meta">25 Questions • 21 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/2020.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1QqLWPn_1N0LPrGLcWAqumAxNX8s_xy57/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 2020 à 2024</div>
+                    <div class="quiz-meta">25 Questions • 21 minutes</div>
+                </div>
+            </div>
+
+        </div>
+    </details>
+
+    <details>
+        <summary>Section 2026</summary>
+        <div class="quiz-grid">
+            
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/PUB1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1gTYDClsc2PO_KHHjHR4Rxz4sQIROiDWM/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz PUB #1</div>
+                    <div class="quiz-meta">30 Questions • 14 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/PUB2.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1xLle9dOH3VAUyB2JUeE-gAVJTNQeuKCM/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz PUB #2 • QUESTIONS</div>
+                    <div class="quiz-meta">30 Questions • 2 minutes (boucle)</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/PUB2_correction.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1scNzaWj5DYouFHMSaab1PE8ifCMucwod/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz PUB #2 • CORRECTION</div>
+                    <div class="quiz-meta">30 Questions • 5 minutes</div>
+                </div>
+            </div>
+
+        </div>
+    </details>
+
+    <details>
+        <summary>Section 2025</summary>
+        <div class="quiz-grid">
+
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/QUEBEC1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1Rvpcb-7Z7fIedFARqUsMJx7PP37Av0AE/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz Québec #1 • 100% franco</div>
+                    <div class="quiz-meta">25 Questions • 16 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/QUEBEC2.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1M4EGwICEsVTIIv7-4ffwwSChpV29N2Gh/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz Québec #2 • 100% franco</div>
+                    <div class="quiz-meta">25 Questions • 16 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/QUEST1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1KeQIT9LE6OWS15tinsMx3WRjhxyDzalq/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz QUEST #1 • Connaissances générales</div>
+                    <div class="quiz-meta">15 Questions • 13 minutes</div>
+                </div>
+            </div>
+        </div>
+    </details>
+
+    <details>
+        <summary>Section 2024</summary>
+        <div class="quiz-grid">
+
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/FILM1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1YWCdH1gsf4QfWEHs1l_r5yv12CYocv7n/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz Films #1</div>
+                    <div class="quiz-meta">30 Questions • 25 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/FILM2.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1suyQg9_kQ8AqzYUD26Ap3aNvTBYJ7mzR/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz Films #2</div>
+                    <div class="quiz-meta">30 Questions • 26 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/JEUX1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/14andFc2W0bRfb_3U-qBNVzdBe9NQa9O-/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz JEUX #1</div>
+                    <div class="quiz-meta">30 Questions • 20 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/POP1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/17YVI2eglvRiQ_7QEQvd1ITb7X94uBt-V/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz POP! #1 • Interprète</div>
+                    <div class="quiz-meta">30 Questions • 19 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/POP2.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1uHmRCwOS4D12udtZXS_Lz5Uedu8TDTN7/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz POP! #2 • Titre</div>
+                    <div class="quiz-meta">30 Questions • 19 minutes</div>
+                </div>
+            </div>
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/TV1.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe src="https://drive.google.com/file/d/1zemxCJni-Q0-8W6bLQB7T7B0wAz7MsjN/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz TV #1</div>
+                    <div class="quiz-meta">30 Questions • 22 minutes</div>
+                </div>
+            </div>
+        </div>
+    </details>
+
+</body>
+</html>
