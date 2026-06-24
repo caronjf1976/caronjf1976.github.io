@@ -207,8 +207,7 @@
             <div class="quiz-card">
                 <div class="video-container" onclick="this.classList.add('active')">
                     <img src="assets/1980.png" class="quiz-poster" alt="Preview Quiz">
-                    
-                    <iframe src="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/preview" 
+                    <iframe data-src="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/preview" 
                             allow="autoplay" 
                             allowfullscreen>
                     </iframe>
@@ -218,20 +217,117 @@
                     <div class="quiz-meta">25 Questions • 21 minutes</div>
                 </div>
             </div>
+            
             <div class="quiz-card">
                 <div class="video-container" onclick="this.classList.add('active')">
                     <img src="assets/1990.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe src="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                    <iframe data-src="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/preview" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                    </iframe>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1990 à 1994</div>
                     <div class="quiz-meta">25 Questions • 20 minutes</div>
                 </div>
             </div>
+                
             <div class="quiz-card">
                 <div class="video-container" onclick="this.classList.add('active')">
                     <img src="assets/2000.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe src="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/preview" allow="autoplay" allowfullscreen></iframe>
+                    <iframe data-src="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/preview" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                    </iframe>                    
+                    242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+            color: var(--text-muted);
+        }
+
+        @media (min-width: 600px) {
+            body { padding: 40px; max-width: 1200px; margin: 0 auto; }
+            header h1 { font-size: 2.5rem; }
+            .quiz-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+                gap: 25px;
+            }
+            .quiz-card { margin-bottom: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="assets/jf2.png" class="header-avatar" alt="Avatar J-F">
+        
+        <div class="header-text">
+            <h1>La Vitrine de Quiz de J-F</h1>
+            <p>Choisissez une section, touchez l'image pour charger le quiz et castez !</p>
+        </div>
+    </header>
+
+    <details>
+        <summary>Quiz 5x5</summary>
+        <div class="quiz-grid">
+
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/1980.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe data-src="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/preview" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 1980 à 1984</div>
+                    <div class="quiz-meta">25 Questions • 21 minutes</div>
+                </div>
+            </div>
+            
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/1990.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe data-src="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/preview" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                    </iframe>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz 5x5 • Années 1990 à 1994</div>
+                    <div class="quiz-meta">25 Questions • 20 minutes</div>
+                </div>
+            </div>
+                
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active')">
+                    <img src="assets/2000.png" class="quiz-poster" alt="Preview Quiz">
+                    <iframe data-src="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/preview" 
+                            allow="autoplay" 
+                            allowfullscreen>
+                    </iframe>                    
+             
                 </div>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2000 à 2004</div>
