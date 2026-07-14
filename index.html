@@ -195,6 +195,24 @@
     </header>
 
     <details>
+        <summary>Quiz Artistes</summary>
+        <div class="quiz-grid">
+
+            <div class="quiz-card">
+                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                    <img src="assets/MJ.jpg" class="quiz-poster" alt="Preview Quiz">
+                    <iframe data-src="https://drive.google.com/file/d/1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/preview" allow="autoplay" allowfullscreen></iframe>
+                </div>
+                <div class="quiz-details">
+                    <div class="quiz-title">Quiz Michael Jackson</div>
+                    <div class="quiz-meta">13 Questions • 10 minutes</div>
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details>
         <summary>Quiz 5x5</summary>
         <div class="quiz-grid">
 
