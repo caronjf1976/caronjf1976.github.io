@@ -11,11 +11,18 @@
         :root {
             --bg-color: #0b0f13;
             --card-bg: #161b22;
-            --accent-cyan: #00f2ff;
             --text-main: #f0f8ff;
             --text-muted: #a0a0b0;
-            --glass-cyan: rgba(0, 242, 255, 0.05);
+            --header-metallic: #e2e8f0;
+            --header-shadow: #94a3b8;
         }
+
+        /* --- PALETTE DES SECTIONS --- */
+        .sec-artistes { --theme-color: #00f2ff; } /* Cyan */
+        .sec-5x5      { --theme-color: #ffb703; } /* Ambre */
+        .sec-2026     { --theme-color: #ff007f; } /* Magenta */
+        .sec-2025     { --theme-color: #9d4edd; } /* Ultraviolet lumineux */
+        .sec-2024     { --theme-color: #ff5a56; } /* Corail */
 
         * {
             box-sizing: border-box;
@@ -31,6 +38,7 @@
             line-height: 1.5;
         }
 
+        /* --- HEADER MÉTALLISÉ --- */
         header {
             display: flex;
             align-items: center;
@@ -38,7 +46,7 @@
             gap: 20px;
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.2);
             text-align: left;
         }
 
@@ -46,8 +54,8 @@
             width: 75px;
             height: 75px;
             border-radius: 50%;
-            border: 3px solid var(--accent-cyan);
-            box-shadow: 0 0 12px rgba(0, 242, 255, 0.4);
+            border: 3px solid var(--header-metallic);
+            box-shadow: 0 0 15px rgba(226, 232, 240, 0.3);
             object-fit: cover;
             background-color: var(--card-bg);
         }
@@ -59,10 +67,10 @@
 
         header h1 {
             font-size: 1.6rem;
-            color: var(--accent-cyan);
+            color: var(--header-metallic);
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
+            text-shadow: 0 0 8px rgba(226, 232, 240, 0.4);
             line-height: 1.2;
             margin-bottom: 5px;
         }
@@ -73,6 +81,7 @@
             line-height: 1.3;
         }
 
+        /* --- ACCORDÉONS DYNAMIQUES --- */
         details {
             background-color: rgba(22, 27, 34, 0.6);
             border-radius: 12px;
@@ -80,18 +89,18 @@
             overflow: hidden;
             border: 5px solid rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(5px);
-            transition: border-color 0.3s;
+            transition: border-color 0.3s ease;
         }
 
         details[open] {
-            border-color: rgba(0, 242, 255, 0.3);
+            border-color: var(--theme-color);
         }
 
         summary {
             padding: 15px 20px;
             font-size: 1.2rem;
             font-weight: bold;
-            color: var(--accent-cyan);
+            color: var(--theme-color);
             cursor: pointer;
             list-style: none;
             display: flex;
@@ -99,6 +108,7 @@
             align-items: center;
             user-select: none;
             letter-spacing: 1px;
+            transition: background-color 0.3s;
         }
 
         summary::after {
@@ -112,7 +122,7 @@
         }
 
         summary:hover {
-            background-color: var(--glass-cyan);
+            background-color: rgba(255, 255, 255, 0.04);
         }
 
         .quiz-grid {
@@ -120,7 +130,7 @@
             display: block;
         }
 
-        /* --- CARTE AVEC ANIMATION NEXUS --- */
+        /* --- CARTES QUIZ DYNAMIQUES --- */
         .quiz-card {
             background-color: var(--card-bg);
             border: 3px solid rgba(255, 255, 255, 0.05);
@@ -133,12 +143,12 @@
 
         .quiz-card:hover {
             transform: translateY(-6px) scale(1.01);
-            background: rgba(0, 242, 255, 0.08);
-            border-color: rgba(0, 242, 255, 0.4);
-            box-shadow: 0 10px 25px rgba(0, 242, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--theme-color);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--theme-color);
         }
 
-        /* Conteneur et Image (Effet d'icône dynamique) */
+        /* Conteneur et Poster */
         .video-container {
             position: relative;
             width: 100%;
@@ -159,10 +169,39 @@
 
         .quiz-card:hover .quiz-poster {
             transform: scale(1.05);
-            filter: brightness(1.1);
+            filter: brightness(0.85);
         }
 
-        /* Scanline Animée */
+        /* Symbole Ouvrir (↗) au survol */
+        .action-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            width: 50px;
+            height: 50px;
+            background: rgba(11, 15, 19, 0.75);
+            border: 2px solid var(--theme-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--theme-color);
+            font-size: 1.4rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--theme-color);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .quiz-card:hover .action-overlay {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Scanline Animée Thématique */
         .quiz-card::after {
             content: "";
             position: absolute;
@@ -170,7 +209,8 @@
             left: 0; 
             width: 100%; 
             height: 2px;
-            background: rgba(0, 242, 255, 0.4);
+            background: var(--theme-color);
+            box-shadow: 0 0 8px var(--theme-color);
             animation: scan 2s linear infinite;
             pointer-events: none;
             opacity: 0;
@@ -200,7 +240,7 @@
         }
 
         .quiz-card:hover .quiz-title {
-            color: var(--accent-cyan);
+            color: var(--theme-color);
         }
 
         .quiz-meta {
@@ -232,13 +272,15 @@
         </div>
     </header>
 
-    <details open>
+    <!-- SECTION ARTISTES (CYAN) -->
+    <details open class="sec-artistes">
         <summary>Quiz Artistes</summary>
         <div class="quiz-grid">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/view" target="_blank" class="video-container">
                     <img src="assets/MJ.jpg" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Michael Jackson</div>
@@ -249,6 +291,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1_O-DLyOSHznoMHGaoy2-rGVA5FmXYn7S/view" target="_blank" class="video-container">
                     <img src="assets/madonna.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Madonna</div>
@@ -259,6 +302,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1WWKK0MUItWLUh1T0Rkjx9V4THOi12pgu/view" target="_blank" class="video-container">
                     <img src="assets/Rihanna.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Rihanna</div>
@@ -269,6 +313,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1tYt5O-yGBjc_aQ1nTdtuDhas5Nrd0hsd/view" target="_blank" class="video-container">
                     <img src="assets/trois.jpeg" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Les Trois Accords</div>
@@ -279,6 +324,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/12-zQquY4n-ZMnYwooXr8-rjVRkm0WRlE/view" target="_blank" class="video-container">
                     <img src="assets/abba.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz ABBA</div>
@@ -289,6 +335,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1nA1zxZjCYVSHFMXlcb990-eCqQXVt80C/view" target="_blank" class="video-container">
                     <img src="assets/Green Day.jpg" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Green Day</div>
@@ -299,13 +346,15 @@
         </div>
     </details>
     
-    <details>
+    <!-- SECTION 5x5 (AMBRE) -->
+    <details class="sec-5x5">
         <summary>Quiz 5x5</summary>
         <div class="quiz-grid">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1S3bTAC8NmeoF9Dkuz3scWYBs_8zDwo1m/view" target="_blank" class="video-container">
                     <img src="assets/1970.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1970 à 1974</div>
@@ -316,6 +365,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/view" target="_blank" class="video-container">
                     <img src="assets/1980.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1980 à 1984</div>
@@ -326,6 +376,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/view" target="_blank" class="video-container">
                     <img src="assets/1990.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1990 à 1994</div>
@@ -336,6 +387,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/view" target="_blank" class="video-container">
                     <img src="assets/2000.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2000 à 2004</div>
@@ -346,6 +398,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1uQ-_laQvnrvBnj4vWnmpFbaGRmu9RgI9/view" target="_blank" class="video-container">
                     <img src="assets/2010.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2010 à 2014</div>
@@ -356,6 +409,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1QqLWPn_1N0LPrGLcWAqumAxNX8s_xy57/view" target="_blank" class="video-container">
                     <img src="assets/2020.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2020 à 2024</div>
@@ -366,13 +420,15 @@
         </div>
     </details>
 
-    <details>
+    <!-- SECTION 2026 (MAGENTA) -->
+    <details class="sec-2026">
         <summary>Section 2026</summary>
         <div class="quiz-grid">
             
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1gTYDClsc2PO_KHHjHR4Rxz4sQIROiDWM/view" target="_blank" class="video-container">
                     <img src="assets/PUB1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz PUB #1</div>
@@ -383,6 +439,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1xLle9dOH3VAUyB2JUeE-gAVJTNQeuKCM/view" target="_blank" class="video-container">
                     <img src="assets/PUB2.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz PUB #2 • QUESTIONS</div>
@@ -393,6 +450,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1scNzaWj5DYouFHMSaab1PE8ifCMucwod/view" target="_blank" class="video-container">
                     <img src="assets/PUB2_correction.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz PUB #2 • CORRECTION</div>
@@ -403,13 +461,15 @@
         </div>
     </details>
 
-    <details>
+    <!-- SECTION 2025 (ULTRAVIOLET) -->
+    <details class="sec-2025">
         <summary>Section 2025</summary>
         <div class="quiz-grid">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1Rvpcb-7Z7fIedFARqUsMJx7PP37Av0AE/view" target="_blank" class="video-container">
                     <img src="assets/QUEBEC1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Québec #1 • 100% franco</div>
@@ -420,6 +480,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1M4EGwICEsVTIIv7-4ffwwSChpV29N2Gh/view" target="_blank" class="video-container">
                     <img src="assets/QUEBEC2.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Québec #2 • 100% franco</div>
@@ -430,6 +491,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1KeQIT9LE6OWS15tinsMx3WRjhxyDzalq/view" target="_blank" class="video-container">
                     <img src="assets/QUEST1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz QUEST #1 • Connaissances générales</div>
@@ -439,13 +501,15 @@
         </div>
     </details>
 
-    <details>
+    <!-- SECTION 2024 (CORAIL) -->
+    <details class="sec-2024">
         <summary>Section 2024</summary>
         <div class="quiz-grid">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1YWCdH1gsf4QfWEHs1l_r5yv12CYocv7n/view" target="_blank" class="video-container">
                     <img src="assets/FILM1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Films #1</div>
@@ -456,6 +520,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1suyQg9_kQ8AqzYUD26Ap3aNvTBYJ7mzR/view" target="_blank" class="video-container">
                     <img src="assets/FILM2.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Films #2</div>
@@ -466,6 +531,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/14andFc2W0bRfb_3U-qBNVzdBe9NQa9O-/view" target="_blank" class="video-container">
                     <img src="assets/JEUX1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz JEUX #1</div>
@@ -476,6 +542,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/17YVI2eglvRiQ_7QEQvd1ITb7X94uBt-V/view" target="_blank" class="video-container">
                     <img src="assets/POP1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz POP! #1 • Interprète</div>
@@ -486,6 +553,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1uHmRCwOS4D12udtZXS_Lz5Uedu8TDTN7/view" target="_blank" class="video-container">
                     <img src="assets/POP2.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz POP! #2 • Titre</div>
@@ -496,6 +564,7 @@
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1zemxCJni-Q0-8W6bLQB7T7B0wAz7MsjN/view" target="_blank" class="video-container">
                     <img src="assets/TV1.png" class="quiz-poster" alt="Preview Quiz">
+                    <div class="action-overlay">↗</div>
                 </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz TV #1</div>
