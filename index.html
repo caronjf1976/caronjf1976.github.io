@@ -128,33 +128,15 @@
             aspect-ratio: 16 / 9;
             overflow: hidden;
             background: #000;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: -25px;
-            left: 0;
-            width: 100%;
-            height: calc(100% + 25px);
-            border: none;
             display: block;
-            z-index: 1;
         }
 
         .quiz-poster {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 2;
+            display: block;
             cursor: pointer;
-        }
-
-        .video-container.active .quiz-poster {
-            display: none;
-            pointer-events: none;
         }
 
         .quiz-details {
@@ -190,7 +172,7 @@
         <img src="assets/jf2.png" class="header-avatar" alt="Avatar J-F">
         <div class="header-text">
             <h1>La Vitrine de Quiz de J-F</h1>
-            <p>Choisissez une thématique, touchez l'image pour charger le quiz et castez !</p>
+            <p>Choisissez une thématique, touchez l'image pour ouvrir le quiz et castez !</p>
         </div>
     </header>
 
@@ -199,10 +181,9 @@
         <div class="quiz-grid">
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/view" target="_blank" class="video-container">
                     <img src="assets/MJ.jpg" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Michael Jackson</div>
                     <div class="quiz-meta">13 Questions • 10 minutes</div>
@@ -210,10 +191,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1_O-DLyOSHznoMHGaoy2-rGVA5FmXYn7S/view" target="_blank" class="video-container">
                     <img src="assets/madonna.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1_O-DLyOSHznoMHGaoy2-rGVA5FmXYn7S/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Madonna</div>
                     <div class="quiz-meta">13 Questions • 8 minutes</div>
@@ -221,10 +201,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1WWKK0MUItWLUh1T0Rkjx9V4THOi12pgu/view" target="_blank" class="video-container">
                     <img src="assets/Rihanna.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1WWKK0MUItWLUh1T0Rkjx9V4THOi12pgu/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Rihanna</div>
                     <div class="quiz-meta">13 Questions • 8 minutes</div>
@@ -232,10 +211,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1tYt5O-yGBjc_aQ1nTdtuDhas5Nrd0hsd/view" target="_blank" class="video-container">
                     <img src="assets/trois.jpeg" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1tYt5O-yGBjc_aQ1nTdtuDhas5Nrd0hsd/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Les Trois Accords</div>
                     <div class="quiz-meta">13 Questions • 8 minutes</div>
@@ -243,10 +221,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/12-zQquY4n-ZMnYwooXr8-rjVRkm0WRlE/view" target="_blank" class="video-container">
                     <img src="assets/abba.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/12-zQquY4n-ZMnYwooXr8-rjVRkm0WRlE/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz ABBA</div>
                     <div class="quiz-meta">13 Questions • 8 minutes</div>
@@ -254,10 +231,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1nA1zxZjCYVSHFMXlcb990-eCqQXVt80C/view" target="_blank" class="video-container">
                     <img src="assets/Green Day.jpg" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1nA1zxZjCYVSHFMXlcb990-eCqQXVt80C/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Green Day</div>
                     <div class="quiz-meta">13 Questions • 8 minutes</div>
@@ -272,10 +248,9 @@
         <div class="quiz-grid">
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1S3bTAC8NmeoF9Dkuz3scWYBs_8zDwo1m/view" target="_blank" class="video-container">
                     <img src="assets/1970.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1S3bTAC8NmeoF9Dkuz3scWYBs_8zDwo1m/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1970 à 1974</div>
                     <div class="quiz-meta">25 Questions • 21 minutes</div>
@@ -283,10 +258,9 @@
             </div>
             
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/view" target="_blank" class="video-container">
                     <img src="assets/1980.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/13syRrCzqgkekxs8FdKl-J6-sw7INk9UU/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1980 à 1984</div>
                     <div class="quiz-meta">25 Questions • 21 minutes</div>
@@ -294,10 +268,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/view" target="_blank" class="video-container">
                     <img src="assets/1990.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1fKRDOg3tqELZTV932PVzIcXgezcECPHV/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 1990 à 1994</div>
                     <div class="quiz-meta">25 Questions • 20 minutes</div>
@@ -305,10 +278,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/view" target="_blank" class="video-container">
                     <img src="assets/2000.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1RSOfsouq0g6gkmzB3Vwtl3Q5vTSvJydy/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2000 à 2004</div>
                     <div class="quiz-meta">25 Questions • 26 minutes</div>
@@ -316,10 +288,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1uQ-_laQvnrvBnj4vWnmpFbaGRmu9RgI9/view" target="_blank" class="video-container">
                     <img src="assets/2010.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1uQ-_laQvnrvBnj4vWnmpFbaGRmu9RgI9/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2010 à 2014</div>
                     <div class="quiz-meta">25 Questions • 21 minutes</div>
@@ -327,10 +298,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1QqLWPn_1N0LPrGLcWAqumAxNX8s_xy57/view" target="_blank" class="video-container">
                     <img src="assets/2020.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1QqLWPn_1N0LPrGLcWAqumAxNX8s_xy57/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz 5x5 • Années 2020 à 2024</div>
                     <div class="quiz-meta">25 Questions • 21 minutes</div>
@@ -345,10 +315,9 @@
         <div class="quiz-grid">
             
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1gTYDClsc2PO_KHHjHR4Rxz4sQIROiDWM/view" target="_blank" class="video-container">
                     <img src="assets/PUB1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1gTYDClsc2PO_KHHjHR4Rxz4sQIROiDWM/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz PUB #1</div>
                     <div class="quiz-meta">30 Questions • 14 minutes</div>
@@ -356,10 +325,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1xLle9dOH3VAUyB2JUeE-gAVJTNQeuKCM/view" target="_blank" class="video-container">
                     <img src="assets/PUB2.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1xLle9dOH3VAUyB2JUeE-gAVJTNQeuKCM/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz PUB #2 • QUESTIONS</div>
                     <div class="quiz-meta">30 Questions • 2 minutes (boucle)</div>
@@ -367,10 +335,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1scNzaWj5DYouFHMSaab1PE8ifCMucwod/view" target="_blank" class="video-container">
                     <img src="assets/PUB2_correction.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1scNzaWj5DYouFHMSaab1PE8ifCMucwod/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz PUB #2 • CORRECTION</div>
                     <div class="quiz-meta">30 Questions • 5 minutes</div>
@@ -385,10 +352,9 @@
         <div class="quiz-grid">
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1Rvpcb-7Z7fIedFARqUsMJx7PP37Av0AE/view" target="_blank" class="video-container">
                     <img src="assets/QUEBEC1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1Rvpcb-7Z7fIedFARqUsMJx7PP37Av0AE/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Québec #1 • 100% franco</div>
                     <div class="quiz-meta">25 Questions • 16 minutes</div>
@@ -396,10 +362,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1M4EGwICEsVTIIv7-4ffwwSChpV29N2Gh/view" target="_blank" class="video-container">
                     <img src="assets/QUEBEC2.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1M4EGwICEsVTIIv7-4ffwwSChpV29N2Gh/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Québec #2 • 100% franco</div>
                     <div class="quiz-meta">25 Questions • 16 minutes</div>
@@ -407,10 +372,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1KeQIT9LE6OWS15tinsMx3WRjhxyDzalq/view" target="_blank" class="video-container">
                     <img src="assets/QUEST1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1KeQIT9LE6OWS15tinsMx3WRjhxyDzalq/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz QUEST #1 • Connaissances générales</div>
                     <div class="quiz-meta">15 Questions • 13 minutes</div>
@@ -424,10 +388,9 @@
         <div class="quiz-grid">
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1YWCdH1gsf4QfWEHs1l_r5yv12CYocv7n/view" target="_blank" class="video-container">
                     <img src="assets/FILM1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1YWCdH1gsf4QfWEHs1l_r5yv12CYocv7n/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Films #1</div>
                     <div class="quiz-meta">30 Questions • 25 minutes</div>
@@ -435,10 +398,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1suyQg9_kQ8AqzYUD26Ap3aNvTBYJ7mzR/view" target="_blank" class="video-container">
                     <img src="assets/FILM2.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1suyQg9_kQ8AqzYUD26Ap3aNvTBYJ7mzR/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz Films #2</div>
                     <div class="quiz-meta">30 Questions • 26 minutes</div>
@@ -446,10 +408,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/14andFc2W0bRfb_3U-qBNVzdBe9NQa9O-/view" target="_blank" class="video-container">
                     <img src="assets/JEUX1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/14andFc2W0bRfb_3U-qBNVzdBe9NQa9O-/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz JEUX #1</div>
                     <div class="quiz-meta">30 Questions • 20 minutes</div>
@@ -457,10 +418,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/17YVI2eglvRiQ_7QEQvd1ITb7X94uBt-V/view" target="_blank" class="video-container">
                     <img src="assets/POP1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/17YVI2eglvRiQ_7QEQvd1ITb7X94uBt-V/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz POP! #1 • Interprète</div>
                     <div class="quiz-meta">30 Questions • 19 minutes</div>
@@ -468,10 +428,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1uHmRCwOS4D12udtZXS_Lz5Uedu8TDTN7/view" target="_blank" class="video-container">
                     <img src="assets/POP2.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1uHmRCwOS4D12udtZXS_Lz5Uedu8TDTN7/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz POP! #2 • Titre</div>
                     <div class="quiz-meta">30 Questions • 19 minutes</div>
@@ -479,10 +438,9 @@
             </div>
 
             <div class="quiz-card">
-                <div class="video-container" onclick="this.classList.add('active'); var iframe = this.querySelector('iframe'); if(!iframe.src) iframe.src = iframe.getAttribute('data-src');">
+                <a href="https://drive.google.com/file/d/1zemxCJni-Q0-8W6bLQB7T7B0wAz7MsjN/view" target="_blank" class="video-container">
                     <img src="assets/TV1.png" class="quiz-poster" alt="Preview Quiz">
-                    <iframe data-src="https://drive.google.com/file/d/1zemxCJni-Q0-8W6bLQB7T7B0wAz7MsjN/preview" allow="autoplay" allowfullscreen></iframe>
-                </div>
+                </a>
                 <div class="quiz-details">
                     <div class="quiz-title">Quiz TV #1</div>
                     <div class="quiz-meta">30 Questions • 22 minutes</div>
