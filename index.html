@@ -264,6 +264,29 @@
             }
             .quiz-card { margin-bottom: 0; }
         }
+
+                .site-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        .foot-logos {
+            width: 75px;
+            height: 75px;
+            border-radius: 20px;
+            border: 3px solid var(--header-metallic);
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.9),       /* Ombre portée pour décoller l'avatar du fond */
+                0 0 15px rgba(255, 255, 255, 0.15); /* Halo neutre assorti au titre */
+            object-fit: cover;
+            background-color: var(--card-bg);
+        }
+        
     </style>
 </head>
 <body>
@@ -577,6 +600,11 @@
             </div>
         </div>
     </details>
+
+    <footer class="site-footer">
+        <img src="assets/logojf.png" class="foot-logos" alt="Logo JF">
+        <img src="assets/logo_nexus.png" class="foot-logos" alt="Logo Nexus">
+    </footer>
 
 </body>
 </html>
