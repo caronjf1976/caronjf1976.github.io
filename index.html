@@ -56,8 +56,8 @@
             border-radius: 50%;
             border: 4px solid var(--header-metallic);
             box-shadow:
-                0 4px 12px rgba(0, 0, 0, 0.9),       /* Ombre portée pour décoller l'avatar du fond */
-                0 0 15px rgba(255, 255, 255, 0.15); /* Halo neutre assorti au titre */
+                0 4px 12px rgba(0, 0, 0, 0.9),
+                0 0 15px rgba(255, 255, 255, 0.15);
             object-fit: cover;
             background-color: var(--card-bg);
         }
@@ -73,8 +73,8 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.9),       /* Profondeur sous le texte */
-                0 0 10px rgba(255, 255, 255, 0.15); /* Halot neutre très doux */
+                0 2px 4px rgba(0, 0, 0, 0.9),
+                0 0 10px rgba(255, 255, 255, 0.15);
             line-height: 1.2;
             margin-bottom: 5px;
         }
@@ -131,7 +131,6 @@
 
         .quiz-grid {
             padding: 20px;
-            display: block;
         }
 
         /* --- CARTES QUIZ DYNAMIQUES --- */
@@ -140,7 +139,6 @@
             border: 3px solid rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 25px;
             position: relative;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -199,10 +197,12 @@
             pointer-events: none;
             z-index: 3;
         }
+
         .quiz-card:hover .action-overlay {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1);
         }
+
         /* Scanline Animée Thématique */
         .quiz-card::after {
             content: "";
@@ -218,17 +218,21 @@
             opacity: 0;
             z-index: 2;
         }
+
         .quiz-card:hover::after {
             opacity: 1;
         }
+
         @keyframes scan {
             0% { top: 0; }
             100% { top: 100%; }
         }
+
         /* Détails sous la vidéo */
         .quiz-details {
             padding: 15px;
         }
+
         .quiz-title {
             font-size: 1.1rem;
             font-weight: bold;
@@ -236,26 +240,52 @@
             color: var(--text-main);
             transition: color 0.3s ease;
         }
+
         .quiz-card:hover .quiz-title {
             color: var(--theme-color);
         }
+
         .quiz-meta {
             font-size: 0.85rem;
             color: var(--text-muted);
         }
+
+        /* --- STYLES DES GRILLES SPÉCIFIQUES --- */
+        .grid-vertical {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-vertical .video-container {
+            aspect-ratio: 9 / 16;
+        }
+
+        .grid-horizontal {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Style des sous-titres d'accordéon */
+        .format-title {
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--theme-color);
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--theme-color);
+            margin: 15px 20px 5px 20px;
+            border-radius: 4px;
+        }
+
         @media (min-width: 600px) {
             body { padding: 40px; max-width: 1300px; margin: 0 auto; }
             header h1 { font-size: 2.2rem; }
             .header-avatar { width: 90px; height: 90px; }
-            
-            .quiz-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-                gap: 25px;
-            }
-            .quiz-card { margin-bottom: 0; }
         }
-                .site-footer {
+
+        .site-footer {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -264,65 +294,18 @@
             margin-bottom: 30px;
             padding-bottom: 20px;
         }
+
         .foot-logos {
             width: 100px;
             height: 100px;
             border-radius: 27px;
             border: 2px solid var(--header-metallic);
             box-shadow:
-                0 4px 12px rgba(0, 0, 0, 0.9),       /* Ombre portée pour décoller l'avatar du fond */
-                0 0 15px rgba(255, 255, 255, 0.15); /* Halo neutre assorti au titre */
+                0 4px 12px rgba(0, 0, 0, 0.9),
+                0 0 15px rgba(255, 255, 255, 0.15);
             object-fit: cover;
             background-color: var(--card-bg);
         }
-        /* Style de la grille pour le format Vertical (9:16) */
-        .grid-vertical {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 colonnes comme sur la maquette */
-            gap: 15px;
-            padding: 10px 0;
-        }
-        .grid-vertical .card-image-wrapper {
-            aspect-ratio: 9 / 16; /* Force le ratio portrait vertical */
-            overflow: hidden;
-            border-radius: 8px;
-            position: relative;
-        }
-        .grid-vertical .card-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        /* Style de la grille pour le format Horizontal (16:9) */
-        .grid-horizontal {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 15px;
-            padding: 10px 0;
-        }
-        .grid-horizontal .card-image-wrapper {
-            aspect-ratio: 16 / 9; /* Ratio paysage classique */
-            overflow: hidden;
-            border-radius: 8px;
-            position: relative;
-        }
-        .grid-horizontal .card-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        /* Style des sous-titres d'accordéon */
-        .format-title {
-            cursor: pointer;
-            font-weight: bold;
-            color: #00e5ff;
-            padding: 8px 12px;
-            background: rgba(0, 229, 255, 0.05);
-            border-left: 3px solid #00e5ff;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        
     </style>
 </head>
 <body>
@@ -336,7 +319,7 @@
     </header>
 
     <!-- SECTION ARTISTES (CYAN) -->
-    <details class="category-accordion" open>
+    <details class="sec-artistes" open>
         <summary class="category-title">📁 Quiz Artistes</summary>
 
         <!-- Sous-section : Format Vertical (9:16) -->
@@ -344,30 +327,29 @@
             <summary class="format-title">📱 Affichage Vertical (9:16)</summary>
 
             <div class="quiz-grid grid-vertical">
-                <!-- Carte Quiz Michael Jackson -->
-                <a href="https://1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/view" target="_blank" class="quiz-card">
-                    <div class="quiz-poster">
-                        <img src="assets/MJ.jpg" alt="Quiz Michael Jackson">
+                <!-- Carte Quiz Michael Jackson (Vertical) -->
+                <div class="quiz-card">
+                    <a href="https://drive.google.com/file/d/1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/view" target="_blank" class="video-container">
+                        <img src="assets/MJ.jpg" class="quiz-poster" alt="Quiz Michael Jackson">
                         <div class="action-overlay">↗</div>
+                    </a>
+                    <div class="quiz-details">
+                        <div class="quiz-title">Quiz Michael Jackson</div>
+                        <div class="quiz-meta">13 Questions • 10 minutes</div>
                     </div>
-                    <div class="card-info">
-                        <h3>Quiz Michael Jackson</h3>
-                        <p>13 Questions • 10 minutes</p>
-                    </div>
-                </a>
-                <!-- Carte Quiz Madonna -->
-                <a href="https://1_O-DLyOSHznoMHGaoy2-rGVA5FmXYn7S/view" target="_blank" class="quiz-card">
-                    <div class="quiz-poster">
-                        <img src="assets/madonna.webp" alt="Quiz Madonna">
+                </div>
+
+                <!-- Carte Quiz Madonna (Vertical) -->
+                <div class="quiz-card">
+                    <a href="https://drive.google.com/file/d/1_O-DLyOSHznoMHGaoy2-rGVA5FmXYn7S/view" target="_blank" class="video-container">
+                        <img src="assets/madonna.webp" class="quiz-poster" alt="Quiz Madonna">
                         <div class="action-overlay">↗</div>
+                    </a>
+                    <div class="quiz-details">
+                        <div class="quiz-title">Quiz Madonna</div>
+                        <div class="quiz-meta">13 Questions • 8 minutes</div>
                     </div>
-                    <div class="card-info">
-                        <h3>Quiz Madonna</h3>
-                        <p>13 Questions • 8 minutes</p>
-                    </div>
-                </a>
-    
-                    <!-- Autres cartes 9:16... -->
+                </div>
             </div>
         </details>
 
@@ -375,9 +357,9 @@
         <details class="format-accordion">
             <summary class="format-title">💻 Affichage Horizontal (16:9)</summary>
 
-            <div class="quiz-card grid-horizontal">
+            <div class="quiz-grid grid-horizontal">
 
-                <div class="quiz-card">    
+                <div class="quiz-card">
                     <a href="https://drive.google.com/file/d/1k6YtXeL_FyCLTL92RDKRJkqzSRw_mQm4/view" target="_blank" class="video-container">
                         <img src="assets/MJ.jpg" class="quiz-poster" alt="Preview Quiz">
                         <div class="action-overlay">↗</div>
@@ -527,7 +509,7 @@
     <!-- SECTION 5x5 (AMBRE) -->
     <details class="sec-5x5">
         <summary>⬛ Quiz 5x5</summary>
-        <div class="quiz-grid">
+        <div class="quiz-grid grid-horizontal">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1S3bTAC8NmeoF9Dkuz3scWYBs_8zDwo1m/view" target="_blank" class="video-container">
@@ -601,7 +583,7 @@
     <!-- SECTION 2026 (MAGENTA) -->
     <details class="sec-2026">
         <summary>⬛ Section 2026</summary>
-        <div class="quiz-grid">
+        <div class="quiz-grid grid-horizontal">
             
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1gTYDClsc2PO_KHHjHR4Rxz4sQIROiDWM/view" target="_blank" class="video-container">
@@ -642,7 +624,7 @@
     <!-- SECTION 2025 (ULTRAVIOLET) -->
     <details class="sec-2025">
         <summary>⬛ Section 2025</summary>
-        <div class="quiz-grid">
+        <div class="quiz-grid grid-horizontal">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1Rvpcb-7Z7fIedFARqUsMJx7PP37Av0AE/view" target="_blank" class="video-container">
@@ -682,7 +664,7 @@
     <!-- SECTION 2024 (CORAIL) -->
     <details class="sec-2024">
         <summary>⬛ Section 2024</summary>
-        <div class="quiz-grid">
+        <div class="quiz-grid grid-horizontal">
 
             <div class="quiz-card">
                 <a href="https://drive.google.com/file/d/1YWCdH1gsf4QfWEHs1l_r5yv12CYocv7n/view" target="_blank" class="video-container">
